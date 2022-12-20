@@ -7,7 +7,7 @@ const port = 3001;
 
 server.use(express.json());
 
-server.use("/users", authorsRouter);
+server.use("/authours", authorsRouter);
 server.listen(port, () => {
   console.table(listEndpoints(server));
   console.log("this server is running on port", port);

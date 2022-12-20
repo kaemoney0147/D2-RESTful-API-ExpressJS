@@ -23,6 +23,7 @@ authorsRouter.post("/", (request, response) => {
   console.log("Requet body", request.body);
   const newAurthor = {
     ...request.body,
+    avatar: `https://ui-avatars.com/api/?name=${request.body.firstname}+${request.body.lastname}`,
     createdAt: new Date(),
     updatedAt: new Date(),
     id: uniqid(),
@@ -34,26 +35,26 @@ authorsRouter.post("/", (request, response) => {
 });
 
 authorsRouter.get("/", (request, response) => {
-  const fileRead = fs.readFileSync(aurthorJsonPath);
+  const fileRead = fs.readFileSync(aurthorJsonPath); //to read the file
   console.log("this is the file content", fileRead);
-  const covertDataToString = JSON.parse(fileRead);
+  const covertDataToString = JSON.parse(fileRead); // convert the file to json format
   console.log("data converted to string", covertDataToString);
   response.send(covertDataToString);
 });
-authorsRouter.get("/:aurthorId", (request, response) => {
-  const aurthorId = request.params.aurthorId;
+authorsRouter.get("/:authorId", (request, response) => {
+  const authorId = request.params.authorId;
   console.log("this is aurthorid", aurthorId);
   const fileRead = JSON.parse(fs.readFileSync(aurthorJsonPath));
-  const aurthor = fileRead.find((aurthor) => aurthor.id === aurthorId);
-  response.send(aurthor);
+  const author = fileRead.find((author) => author.id === authorId);
+  response.send(author);
 });
 
-authorsRouter.put("/:aurthorId", (request, response) => {
+authorsRouter.put("/:authorId", (request, response) => {
   const fileRead = JSON.parse(fs.readFileSync(aurthorJsonPath));
   const indexOfArray = fileRead.findIndex(
-    (aurthor) => aurthor.id !== request.params.aurthorId
+    (author) => author.id !== request.params.authorId
   );
-  const previousDetails = file[indexOfArray];
+  const previousDetails = fileRead[indexOfArray];
   const editedDetails = {
     ...previousDetails,
     ...request.body,
@@ -64,10 +65,10 @@ authorsRouter.put("/:aurthorId", (request, response) => {
   response.send(editedDetails);
 });
 
-authorsRouter.delete("/:aurthorId", (request, response) => {
+authorsRouter.delete("/:authorId", (request, response) => {
   const fileRead = JSON.parse(fs.readFileSync(aurthorJsonPath));
   const aurthorsLeft = fileRead.filter(
-    (aurthor) => aurthor.id !== request.params.aurthorId
+    (aurthor) => aurthor.id !== request.params.authorId
   );
   fs.writeFileSync(aurthorJsonPath, JSON.stringify(aurthorsLeft));
   response.send();
