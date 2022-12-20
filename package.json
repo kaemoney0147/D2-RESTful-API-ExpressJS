@@ -1,0 +1,30 @@
+{
+  "name": "d2-restful-api-expressjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -e js ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaemoney0147/D2-RESTful-API-ExpressJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaemoney0147/D2-RESTful-API-ExpressJS/issues"
+  },
+  "homepage": "https://github.com/kaemoney0147/D2-RESTful-API-ExpressJS#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-list-endpoints": "^6.0.0",
+    "uniqid": "^5.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
